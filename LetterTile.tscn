@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://box_spritesheet.png" type="Texture" id=1]
+[ext_resource path="res://LetterTile.gd" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 32, 32 )
+
+[node name="LetterTile" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="Tiles" type="Sprite" parent="."]
+scale = Vector2( 0.25, 0.25 )
+texture = ExtResource( 1 )
+vframes = 7
+hframes = 4
+
+[node name="ClickableArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ClickableArea"]
+shape = SubResource( 1 )
+[connection signal="input_event" from="ClickableArea" to="." method="_on_ClickableArea_input_event"]
