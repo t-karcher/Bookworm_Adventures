@@ -11,4 +11,4 @@ position = Vector2( 437, 350 )
 [node name="Word" type="Node2D" parent="."]
 position = Vector2( 531, 144 )
 
-[node name="Tween" type="Tween" parent="."]
+[node name="MyTween" type="Tween" parent="."]
