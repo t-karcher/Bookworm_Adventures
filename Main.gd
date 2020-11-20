@@ -27,16 +27,23 @@ func on_tile_clicked(tile:LetterTile):
 		Word.add_child(tile)
 		tile.global_position = start_pos
 	else:
-		Word.remove_child(tile)
-		LetterBox.add_child(tile)
-		# warning-ignore:return_value_discarded
-		MyTween.interpolate_property(
-			tile,
-			"position",
-			start_pos - LetterBox.position,
-			tile.box_position,
-			0.2)
+		var remove_from_here : bool = false
+		for t in Word.get_children():
+			if t == tile: remove_from_here = true
+			if remove_from_here: remove_tile(t)
 	arrange_word_tiles()
+
+func remove_tile(tile:LetterTile):
+	var start_pos = tile.global_position
+	Word.remove_child(tile)
+	LetterBox.add_child(tile)
+	# warning-ignore:return_value_discarded
+	MyTween.interpolate_property(
+		tile,
+		"position",
+		start_pos - LetterBox.position,
+		tile.box_position,
+		0.2)
 
 func arrange_word_tiles():
 	var letter_count = Word.get_child_count()
